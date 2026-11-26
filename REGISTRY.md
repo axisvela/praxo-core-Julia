@@ -1,13 +1,13 @@
 # PRAXO-CORE Julia Registry Introduction
 
-**Status:** pending registry merge. Source version `0.7.0`, source
-tag `julia/v0.7.0`. Published registry version: `0.2.0`. Registry
+**Status:** pending registry merge. Source version `0.9.0`, source
+tag `julia/v0.9.0`. Published registry version: `0.2.0`. Registry
 pages are release snapshots; verify the published version before relying on a
 feature.
 
 ## Positioning
 
-Julia implementation of the PRAXO-CORE contract.
+Julia implementation of the PRAXO-CORE AI agent framework contract.
 
 ## Package
 
@@ -15,11 +15,11 @@ Julia implementation of the PRAXO-CORE contract.
 | --- | --- |
 | Package | `PraxoCore` |
 | Registry | [Julia General (pending)](https://github.com/axisvela/PraxoCore.jl) |
-| Source version | `0.7.0` |
+| Source version | `0.9.0` |
 | Published registry version | `0.2.0` |
 | Install (published) | `Pkg.add("PraxoCore")` |
-| Install (source/release prepared) | `Pkg.add(name="PraxoCore", version="0.7.0")` |
-| Source tag | `julia/v0.7.0` |
+| Install (source/release prepared) | `Pkg.add(name="PraxoCore", version="0.8.0")` |
+| Source tag | `julia/v0.9.0` |
 | Tier | Core |
 | Contract | `SPEC_VERSION` `0.2.0` |
 | Documentation | https://axisvela.github.io/praxo-core/languages/julia/ |
@@ -28,9 +28,9 @@ Julia implementation of the PRAXO-CORE contract.
 
 | Adapter | Status | Detail |
 | --- | --- | --- |
-| OpenAI-compatible model | native | `OpenAICompatibleModel` |
-| Anthropic model | native | `AnthropicModel`; injectable transport |
-| Gemini model | native | `GeminiModel`; injectable transport |
+| OpenAI-compatible model | native | `OpenAICompatibleModel`; `generate_stream` reassembles SSE content, tool calls, usage, and finish reason |
+| Anthropic model | native | `AnthropicModel`; injectable transport; `generate_stream` reassembles Anthropic SSE |
+| Gemini model | native | `GeminiModel`; injectable transport; `generate_stream` reassembles Gemini SSE |
 | MCP client | native (transport seam) | `mcp_client`; caller supplies transport |
 | Harmovela sink | native | `HarmovelaSink` |
 | OpenTelemetry sink | native (transport seam) | `otel_sink`; caller supplies OTLP/HTTP transport |
@@ -40,6 +40,8 @@ Julia implementation of the PRAXO-CORE contract.
 ## Coding-agent entry
 
 - [Examples](https://github.com/axisvela/praxo-core/tree/main/language/julia/examples): runnable language-specific examples.
+- [Scenario tutorials](https://github.com/axisvela/praxo-core/tree/main/language/julia/Tutorial): scenario-oriented tutorials.
+- [Reference applications](https://github.com/axisvela/praxo-core/tree/main/language/julia/application): AI-native reference applications.
 - [llms.txt](llms.txt): compact machine-readable entry for this language.
 - [llms.md](llms.md): Markdown version of the same entry.
 - [Coding-agent contract](../../docs/getting-started/coding-agents.md): explicit
@@ -49,6 +51,14 @@ Julia implementation of the PRAXO-CORE contract.
 
 - X: <https://x.com/axisvela>
 - Weibo: <https://weibo.com/u/1936025761>
+- LinkedIn: <https://www.linkedin.com/company/axisvela/>
+- Facebook: <https://www.facebook.com/profile.php?id=61596905732406>
+- YouTube: <https://www.youtube.com/@axisvela>
+- Discord: <https://discord.com/channels/1575163993767809064/1575164343148875977>
+- GitHub Discussions: <https://github.com/axisvela/praxo-core/discussions>
+- GitHub Issues: <https://github.com/axisvela/praxo-core/issues>
+- Documentation: <https://axisvela.github.io/praxo-core/>
+- Architect: <https://axisvela.architect.pub>
 
 ## Boundaries
 

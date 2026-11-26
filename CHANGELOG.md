@@ -1,5 +1,24 @@
 # Julia Core Release Notes
 
+## 0.9.0 - 2026-11-26
+
+Source tag `julia/v0.9.0`.
+
+- Minor release for AI-native reference applications, scenario tutorials, and the Go examples layout refresh.
+
+## 0.8.0 - 2026-11-20
+
+Source tag `julia/v0.8.0`.
+
+### Added
+
+- `ProcessHost` supervises a JSON-Lines plugin child with token
+  authentication and call timeouts.
+- Deterministic representative-chain example covering MCP, final-argument
+  authorization, governed child delegation, OTel/Harmovela events, and an edited
+  denial with zero effects.
+- Advanced-delegation example plus six application-level governance checks.
+
 ## 0.7.0 - 2026-11-15
 
 Source tag `julia/v0.7.0`.

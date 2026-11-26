@@ -1,9 +1,9 @@
 # PRAXO-CORE Julia Core
 
-Julia implementation of the PRAXO-CORE contract.
+Julia implementation of the PRAXO-CORE AI agent framework contract.
 
 - `SPEC_VERSION`: `0.2.0`
-- Core version: `0.7.0`
+- Core version: `0.9.0`
 - Tier: core
 - License: MIT
 - Dependency: JSON.jl
@@ -15,15 +15,16 @@ Julia implementation of the PRAXO-CORE contract.
 - [Examples](https://github.com/axisvela/praxo-core/tree/main/language/julia/examples): runnable language-specific examples.
 - Coding-agent contract: [docs/getting-started/coding-agents.md](https://github.com/axisvela/praxo-core/blob/main/docs/getting-started/coding-agents.md)
 - Registry: [Julia General (pending)](https://github.com/axisvela/PraxoCore.jl)
-- Community: [X](https://x.com/axisvela) · [Weibo](https://weibo.com/u/1936025761)
+- Community: [X](https://x.com/axisvela) · [Weibo](https://weibo.com/u/1936025761) · [LinkedIn](https://www.linkedin.com/company/axisvela/) · [Facebook](https://www.facebook.com/profile.php?id=61596905732406) · [YouTube](https://www.youtube.com/@axisvela) · [Discord](https://discord.com/channels/1575163993767809064/1575164343148875977) · [GitHub Discussions](https://github.com/axisvela/praxo-core/discussions) · [GitHub Issues](https://github.com/axisvela/praxo-core/issues) · [Documentation](https://axisvela.github.io/praxo-core/) · [Architect](https://axisvela.architect.pub)
 
 ## Scope
 
-`0.6.0` implements all eleven conformance vector groups: tool-call parsing, JSON
+`0.8.0` implements all eleven conformance vector groups: tool-call parsing, JSON
 Schema, plugin manifests, memory, events, stream kinds, checkpoint envelopes,
-path policy, context budgets, middleware, and the agent loop. Non-streaming
-OpenAI-compatible, Anthropic, and Gemini model adapters, plus an OpenTelemetry
-event sink, are available under `src/adapters/`.
+path policy, context budgets, middleware, and the agent loop.
+OpenAI-compatible and Anthropic and Gemini streaming model
+adapters, an OpenTelemetry event sink, and the `PluginProcess` process host are
+available under `src/adapters/` and `src/PluginProcess.jl`.
 
 ## OpenAI-Compatible Adapter
 
@@ -39,7 +40,10 @@ result = generate(adapter, Request([Message(Roles.USER, "hi")]))
 ```
 
 Provider HTTP failures raise `PraxoError` with code `PROVIDER_HTTP`; invalid
-tool-argument JSON raises `PROVIDER_JSON`. Streaming is not implemented.
+tool-argument JSON raises `PROVIDER_JSON`. `generate_stream` sets `stream: true`,
+parses SSE, reassembles content, fragmented tool calls, usage, and
+`finish_reason`, and calls the delta callback. Inject `stream_transport`
+returning raw SSE text; set `on_delta` in `AgentOptions` to use it.
 
 ## Anthropic and Gemini Adapters
 
@@ -146,7 +150,7 @@ Decisions are `approve` (continue), `edit` (replace arguments and reauthorize),
 `reject` (raise `AGENT_APPROVAL_DENIED` with the reason), and `respond` (skip
 the tool and use the response). A matching call with no handler raises
 `AGENT_INTERRUPT_UNHANDLED`; an unknown action or edit without arguments raises
-`AGENT_INTERRUPT_DECISION_INVALID`. See [`examples/hitl`](examples/hitl/).
+`AGENT_INTERRUPT_DECISION_INVALID`. See [`language/go/examples/hitl`](language/go/examples/hitl/).
 
 ## Build and test
 
@@ -168,5 +172,5 @@ Local toolchain used by the repository maintainers lives at `D:\dev\julia`.
 
 ## Release
 
-Tag shape: `julia/v0.7.0`. The tag targets `SPEC_VERSION` `0.2.0`. The mirror `axisvela/praxo-core-julia` registers the package through
+Tag shape: `julia/v0.8.0`. The tag targets `SPEC_VERSION` `0.2.0`. The mirror `axisvela/praxo-core-julia` registers the package through
 JuliaRegistrator; see [PUBLISHING.md](PUBLISHING.md).
